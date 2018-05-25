@@ -17,3 +17,31 @@ SAVEHIST=1000
 export BROWSER="chrome"
 export EDITOR="vim"
 export PATH="${PATH}:${HOME}/bin:${HOME}/.cabal/bin"
+
+#-----------------------------
+# Dircolors
+#-----------------------------
+#LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
+#export LS_COLORS
+# 开启颜色
+autoload -U colors && colors    
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+setopt prompt_subst
+
+#------------------------------
+# Alias stuff
+#------------------------------
+alias ls="ls --color -F"
+alias ll="ls --color -lh"
+
+alias ebuild='nocorrect ebuild'
+alias gist='nocorrect gist'
+alias heroku='nocorrect heroku'
+alias hpodder='nocorrect hpodder'
+alias man='nocorrect man'
+alias mkdir='nocorrect mkdir'
+alias mv='nocorrect mv'
+alias mysql='nocorrect mysql'
+alias sudo='nocorrect sudo'
+setopt correct_all
+
