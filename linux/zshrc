@@ -1,5 +1,5 @@
 #-----------------------------
-# Source some stuff
+# Source some stuff test
 #-----------------------------
 
 #------------------------------
@@ -24,7 +24,6 @@ export PATH="${PATH}:${HOME}/bin:${HOME}/.cabal/bin"
 # 开启颜色
 autoload -U colors && colors    
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
-
 
 #------------------------------
 # Alias stuff
@@ -94,7 +93,5 @@ git_prompt() {
   fi
 }
 
-
 RPS1='$(git_prompt)%{$fg_bold[white]%}[%{$fg_bold[yellow]%}%?%{$fg_bold[white]%}]'
-
 
