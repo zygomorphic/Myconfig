@@ -1,7 +1,3 @@
-#-----------------------------
-# Source some stuff test
-#-----------------------------
-
 #------------------------------
 # History stuff
 #------------------------------
@@ -30,7 +26,6 @@ export LSCOLORS="Gxfxcxdxbxegedabagacad"
 #------------------------------
 alias ls="ls --color -F"
 alias ll="ls --color -lh"
-
 alias ebuild='nocorrect ebuild'
 alias gist='nocorrect gist'
 alias heroku='nocorrect heroku'
@@ -45,12 +40,10 @@ setopt correct_all
 #------------------------------
 # Comp stuff
 #------------------------------
-
 setopt beep notify
 setopt completealiases
 setopt HIST_IGNORE_DUPS
 bindkey -e
-
 
 zstyle :compinstall filename '/home/zhouxin/.zshrc'
 zstyle ':completion:*' rehash true
@@ -78,6 +71,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 #------------------------------
 source /home/zhouxin/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+
 #------------------------------
 # Git status
 #------------------------------
@@ -85,13 +79,14 @@ git_prompt() {
   BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/*\(.*\)/\1/')
 
   if [ ! -z $BRANCH ]; then
-    echo -n "%F{yellow}$BRANCH"
+    echo -n "%{$fg_bold[white]%}[%{$fg_bold[green]%}$BRANCH ✔%{$fg_bold[white]%}]"
 
-    if [ ! -z "$(git status --short)" ]; then
-      echo " %F{red}✗"
+    if [ ! -z "$(git status -s)" ]; then
+      echo " %{$fg_bold[white]%}✘"
     fi
   fi
 }
 
 RPS1='$(git_prompt)%{$fg_bold[white]%}[%{$fg_bold[yellow]%}%?%{$fg_bold[white]%}]'
+
 
