@@ -1,0 +1,19 @@
+
+
+#-----------------------------
+# Source some stuff
+#-----------------------------
+
+#------------------------------
+# History stuff
+#------------------------------
+HISTFILE=~/.zsh/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+#------------------------------
+# Variables
+#------------------------------
+export BROWSER="chrome"
+export EDITOR="vim"
+export PATH="${PATH}:${HOME}/bin:${HOME}/.cabal/bin"
