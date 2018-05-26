@@ -1,7 +1,7 @@
 " General
 set number			" Show line numbers
 set linebreak			" Break lines at word (requires Wrap lines)
-set showbreak=+++		" Wrap-broken line prefix
+" set showbreak=+++		" Wrap-broken line prefix
 set showmatch			" Highlight matching brace
 set guifont=Monaco\ 12      	" 设定字体
  
@@ -11,7 +11,7 @@ set ignorecase			" Always case-insensitive
 set incsearch			" Searches for strings incrementally
 set nocp			" 关闭vi模式 
 set nocompatible		" 取消VI兼容，VI键盘模式不易用 
-set history=100		" 历史命令保存行数
+set history=100	        	" 历史命令保存行数
  
 set autoindent			" Auto-indent new lines
 set cindent			" Use 'C' style program indenting
@@ -33,7 +33,7 @@ colorscheme desert		" 使用配色方案
  
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn      " 设置忽略文件
 set lbr				" 不在单词中间折行 
-set nowrap			" 指定不折行
+set wrap			" 指定不折行
 set formatoptions+=m		" 如遇Unicode值大于255的文本，不必等到空格再折行
 set formatoptions+=B		" 合并两行中文时，不在中间加空格
 "set cursorline			" 高亮光标所在行  

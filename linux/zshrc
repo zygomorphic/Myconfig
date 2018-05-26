@@ -6,8 +6,6 @@ export BROWSER="chrome"
 export EDITOR="vim"
 export PATH="${PATH}:${HOME}/bin:${HOME}/.cabal/bin"
 
-#LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
-#export LS_COLORS
 
 # 开启颜色
 autoload -U colors && colors    
@@ -34,34 +32,51 @@ zstyle :compinstall filename '/home/zhouxin/.zshrc'
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' menu select
 
+#------------------------------------------------------------------------------------------
+# 					Plugins
+#------------------------------------------------------------------------------------------
+source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#------------------------------------------------------------------------------------------
+# 					Plugins End
+#------------------------------------------------------------------------------------------
+
 ## 启用忽略大小写匹配
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 autoload -U compinit promptinit
 compinit
 promptinit
-prompt adam2
+# prompt off
 setopt prompt_subst
 
-#------------------------------------------------------------------------------------------
-# 					Plugins
-#------------------------------------------------------------------------------------------
-source /home/zhouxin/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#------------------------------------------------------------------------------------------
-# 					Plugins End
-#------------------------------------------------------------------------------------------
+local _current_dir="%{$fg_bold[black]%}%3~%{$reset_color%} "
+function _current_dir() {
+  local _max_pwd_length="65"
+  if [[ $(echo -n $PWD | wc -c) -gt ${_max_pwd_length} ]]; then
+    echo "%{$fg_bold[black]%}%-2~ ... %3~%{$reset_color%}"
+  else
+    echo "%{$fg_bold[black]%}%~%{$reset_color%}"
+  fi
+}
 
 git_prompt() {
   BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/*\(.*\)/\1/')
-
   if [ ! -z $BRANCH ]; then
     if [ -z "$(git status -s)" ]; then
-      echo -n "%{$fg_bold[white]%}[%{$fg_bold[yellow]%}$BRANCH %{$fg_bold[green]%}✔ %{$fg_bold[white]%}]::"
+      echo -n "*%{$fg_bold[orange]%}$BRANCH·%{$fg[green]%}✔ %{$reset_color%}"
     elif [ ! -z "$(git status -s)" ]; then
-      echo -n "%{$fg_bold[white]%}[%{$fg_bold[yellow]%}$BRANCH %{$fg_bold[red]%}✘ %{$fg_bold[white]%}]::"
-      #echo " %{$fg_bold[red]%}✘"
+      echo -n "*%{$fg_bold[orange]%}$BRANCH·%{$fg[red]%}✘ %{$reset_color%}"
     fi
   fi
 }
-RPS1='$(git_prompt)%{$fg_bold[white]%}[%{$fg_bold[yellow]%}%?%{$fg_bold[white]%}]'
 
+get_message() {
+  echo "$USER@Linux"
+}
+
+#❰❙ ❱
+PROMPT='%{$fg[black]%}$(get_message):%{$reset_color%}${_current_dir}$(git_prompt)
+%{$fg[green]%}➤ %{$reset_color%}'
+
+RPROMPT='%{$fg_bold[blue]%}%?%{$reset_color%}'
